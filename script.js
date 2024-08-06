@@ -7,7 +7,6 @@ let computerScore = 0;
 function getComputerChoice(){
     let random = Math.random();
     if(random <= 0.33){
-        console.log(random);
         console.log("rock");
         return "rock";
     }
@@ -21,11 +20,7 @@ function getComputerChoice(){
     }
 }
 
-function getHumanChoice(){
-    return prompt("Enter your choice:").toLowerCase();
-}
-
-function playRound(computerChoice, humanChoice){
+function playRound(humanChoice, computerChoice){
     if(computerChoice === humanChoice){
         return `It's a tie! The computer also chose ${computerChoice}`
     }
@@ -61,17 +56,30 @@ function playRound(computerChoice, humanChoice){
     }
 }
 
-for(let i = 0; i < 5; i++){
-    let computerChoice = getComputerChoice();
-    let humanChoice = getHumanChoice();
-    playRound(computerChoice, humanChoice);
-}
-if(humanScore > computerScore){
-    console.log(`You won! Your score is ${humanScore} out of 5`);
-}
-else if(humanScore < computerScore){
-    console.log(`You lost! Your score is ${humanScore} out of 5`);
-}
-else{
-    console.log("It's a tie!");
-}
+const buttons = document.querySelector(".buttons");
+const comp = document.querySelector(".comp");
+const you = document.querySelector(".you");
+const compScore = document.querySelector(".comp-score");
+const youScore = document.querySelector(".you-score")
+const h2 = document.querySelector("h2");
+
+buttons.addEventListener("click", (e) => {
+    let target = e.target;
+    let computerChoice = getComputerChoice()
+    playRound(target.id, computerChoice);
+    
+    if(humanScore === 5){
+        h2.textContent = "You Won!";
+        humanScore = 0;
+        computerScore = 0;
+    }
+    else if(computerScore === 5){
+        h2.textContent = "You Lost!";
+        humanScore = 0;
+        computerScore = 0;
+    }
+    comp.textContent = `The computer chose: ${computerChoice}`;
+    you.textContent = `You chose: ${target.id}`;
+    compScore.textContent = `Computer Score: ${computerScore}`;
+    youScore.textContent = `Your Score: ${humanScore}`;
+})

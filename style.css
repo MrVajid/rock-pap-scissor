@@ -1,0 +1,32 @@
+body, html {
+    background-color: rgb(255, 255, 255);
+    font-family: 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 25%;
+    margin: auto;
+}
+
+h1, h3, h2, p, div {
+    margin: 4px;
+}
+
+.left {
+    text-align: left;
+}
+.right {
+    text-align: right;
+}
+.centre {
+    text-align: center;
+}
+
+.scores, .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
